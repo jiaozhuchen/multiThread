@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 看完MultiThreadBase类和InterruptTest类后我们做个小练习吧
  */
-public class BaseTest {
+public class BasicTest {
 
     /**
      * 看看这个类的写法是否有问题，如果有问题，哪里有问题

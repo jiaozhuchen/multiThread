@@ -11,7 +11,7 @@ public class TwinsLockTest {
         }
 
         /**
-         * 测试同一时刻只能有一个线程加锁成功
+         * 测试同一时刻最多只能有两个线程加锁成功
          */
         private void testLockAndUnlock() {
             lock.lock();

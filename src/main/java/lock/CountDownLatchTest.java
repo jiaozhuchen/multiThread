@@ -44,8 +44,8 @@ public class CountDownLatchTest {
             try {
                 startSignal.await();
                 doWork();
-                System.out.println(currentThread().getName() + ": finish work");
                 doneSignal.countDown();
+                System.out.println(currentThread().getName() + ": finish work");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

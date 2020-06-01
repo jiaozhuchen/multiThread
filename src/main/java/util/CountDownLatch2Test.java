@@ -3,6 +3,7 @@ package util;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.currentThread;
 
@@ -16,14 +17,17 @@ public class CountDownLatch2Test {
 
     public static void main(String[] args) throws InterruptedException {
         final int N = 3;
-        CountDownLatch doneSignal = new CountDownLatch(1);
+        CountDownLatch doneSignal = new CountDownLatch(N);
         ExecutorService e = Executors.newFixedThreadPool(3);
-        try{
-            for (int i = 0; i < N; ++i) // create and start threads
+        try {
+            // create and start threads
+            for (int i = 0; i < N; ++i) {
+                TimeUnit.SECONDS.sleep(1L);
                 e.submit(new WorkerRunnable(doneSignal, i));
+            }
             doneSignal.await();           // wait for all to finish
             System.out.println(currentThread().getName() + ": end");
-        }finally {
+        } finally {
             e.shutdown();
         }
     }

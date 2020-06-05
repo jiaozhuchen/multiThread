@@ -22,7 +22,7 @@ public class VolatileTest extends Thread{
     public static void main(String[] args) throws InterruptedException {
         VolatileTest volatileTest = new VolatileTest();
         volatileTest.start();
-        TimeUnit.MILLISECONDS.sleep(3);
+        TimeUnit.MILLISECONDS.sleep(5);
         volatileTest.flag = 1;
         System.out.println("main i: " + volatileTest.i);
     }

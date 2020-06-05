@@ -15,7 +15,7 @@ public class DelayQueueTest {
     public static void main(String[] args) throws InterruptedException {
         DelayQueue delayQueue = new DelayQueue();
         for(int i=0; i<10; i++) {
-            TimeUnit.MILLISECONDS.sleep(10);
+            TimeUnit.MILLISECONDS.sleep(1);
             delayQueue.put(new DelayItem(new Random().nextInt(100)));
         }
 

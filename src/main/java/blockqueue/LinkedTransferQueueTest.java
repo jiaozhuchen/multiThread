@@ -22,8 +22,8 @@ public class LinkedTransferQueueTest {
 
         Thread thread = new Thread(() -> {
             try {
-                TimeUnit.SECONDS.sleep(1L);
                 while (linkedTransferQueue.size() > 0) {
+                    TimeUnit.SECONDS.sleep(1L);
                     System.out.println(linkedTransferQueue.take());
                 }
             } catch (InterruptedException e) {
@@ -31,9 +31,9 @@ public class LinkedTransferQueueTest {
             }
         });
         thread.start();
-        System.out.println(currentThread().getName() + ": " + "transfer start");
+        System.out.println(currentThread().getName() + ": transfer start");
         linkedTransferQueue.transfer(currentThread().getName() + ": " + N);
-        System.out.println(currentThread().getName() + ": " + "transfer end");
+        System.out.println(currentThread().getName() + ": transfer end");
 
     }
 }

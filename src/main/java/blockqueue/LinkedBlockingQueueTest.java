@@ -18,7 +18,7 @@ import static java.lang.Thread.currentThread;
  */
 public class LinkedBlockingQueueTest {
 
-    private static final int CAPACITY = 10;
+    private static final int CAPACITY = 5;
     private static final LinkedBlockingQueue<String> blockingQueue = new LinkedBlockingQueue(CAPACITY);
 
     public static void main(String[] args) throws InterruptedException {

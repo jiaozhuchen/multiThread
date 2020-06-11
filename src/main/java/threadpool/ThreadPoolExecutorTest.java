@@ -8,8 +8,10 @@ import static java.lang.Thread.currentThread;
 
 /**
  * 1. 测试ThreadPoolExecutor构造方法的使用
- * 2. 测试shutdown方法使用
- * 3. 测试allowCoreThreadTimeOut字段的作用
+ * 2. 测试shutdown方法: shutdown以后不会再接受新任务，但会把已经在队列中的任务执行完
+ * 3. 测试allowCoreThreadTimeOut字段的作用：
+ *      默认线程增加以后，当线程数量小于等于核心线程数时，不回收
+ *      这个字段设为true后，核心线程也会回收
  */
 public class ThreadPoolExecutorTest {
 

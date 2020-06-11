@@ -14,8 +14,8 @@ import static java.lang.Thread.currentThread;
 public class ThreadPoolExecutorTest {
 
     public static void main(String[] args) throws InterruptedException {
-//        testAllowCoreThreadTimeOut(true);
-        testShutdown();
+        testAllowCoreThreadTimeOut(true);
+//        testShutdown();
     }
 
     //测试shutdown方法的使用，线程池shutdown以后不会再接受新任务，但会把已经在队列中的任务执行完

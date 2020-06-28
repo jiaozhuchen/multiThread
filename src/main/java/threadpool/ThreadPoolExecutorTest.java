@@ -16,8 +16,21 @@ import static java.lang.Thread.currentThread;
 public class ThreadPoolExecutorTest {
 
     public static void main(String[] args) throws InterruptedException {
-        testAllowCoreThreadTimeOut(true);
+//        testAllowCoreThreadTimeOut(true);
 //        testShutdown();
+        testShutdownNow();
+    }
+
+    //测试shutdownNow方法的使用，线程池shutdownNow以后不会再接受新任务，已经在队列中的任务,还没开始执行的任务会被移除掉
+    private static void testShutdownNow() throws InterruptedException {
+        int corePoolSize = 5;
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(corePoolSize, corePoolSize, 100L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<>());
+        for (int i = 0; i < corePoolSize * 2; i++) {
+            threadPoolExecutor.execute(new Worker());
+        }
+        TimeUnit.MILLISECONDS.sleep(1L);
+        threadPoolExecutor.shutdownNow();
     }
 
     //测试shutdown方法的使用，线程池shutdown以后不会再接受新任务，但会把已经在队列中的任务执行完
@@ -28,7 +41,7 @@ public class ThreadPoolExecutorTest {
         for (int i = 0; i < corePoolSize * 2; i++) {
             threadPoolExecutor.execute(new Worker());
         }
-        TimeUnit.MILLISECONDS.sleep(10L);
+        TimeUnit.MILLISECONDS.sleep(1L);
         threadPoolExecutor.shutdown();
     }
 
@@ -59,8 +72,12 @@ public class ThreadPoolExecutorTest {
         @SneakyThrows
         @Override
         public void run() {
-            TimeUnit.MILLISECONDS.sleep(10L);
-            System.out.println(currentThread().getName() + " working");
+            //对比shutDown和shutDownNow的区别
+            int m =0;
+            for(int i=0; i<100_000_000; i++) {
+                m = i;
+            }
+            System.out.println(currentThread().getName() + " working " + m);
         }
     }
 }
